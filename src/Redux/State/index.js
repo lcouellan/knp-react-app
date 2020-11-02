@@ -1,4 +1,4 @@
-import Dog from './Dog'
+import Board from './Board'
 import { tap, pipe } from 'ramda'
 import { combineReducers } from 'redux'
 
@@ -15,10 +15,10 @@ export const debug = reducer => (state = reducer(), action = {}) => pipe(
   tap(() => console.timeEnd('Reducer :: Timer :')),
   tap(() => console.info(':: END DEBUG ::')),
   tap(() => console.info('')),
-  tap(() => console.groupEnd()),
+  tap(() => console.groupEnd())
 )(action)
 
 // State :: (State, Action *) -> State
 export default combineReducers({
-  Dog,
+  Board
 })
