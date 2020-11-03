@@ -1,6 +1,5 @@
 import React from 'react'
 import { createStore } from 'redux'
-import { Provider } from 'react-redux'
 import { act } from 'react-test-renderer'
 import Board from './index'
 import State from '../../Redux/State'
@@ -17,7 +16,6 @@ describe('Component :: Board :: index', () => {
       inspector = createContainer(<Board />, store)
     })
 
-    inspector.root.findByProps({ className: 'myBoard' })
     expect(inspector).toMatchSnapshot()
   })
 
@@ -33,7 +31,6 @@ describe('Component :: Board :: index', () => {
       store.dispatch(addCard())
     })
 
-    inspector.root.findByProps({ className: 'board loader' })
     expect(inspector).toMatchSnapshot()
   })
 
@@ -53,14 +50,6 @@ describe('Component :: Board :: index', () => {
       store.dispatch(receiveCard({ title: 'My test card' }))
     })
 
-    inspector.root.findByProps({ className: 'board add-card' })
-    inspector.root.findByProps({ className: 'card-title' })
-
     expect(inspector).toMatchSnapshot()
   })
 })
-
-const createElement = (store, component) =>
-  <Provider store={store}>
-    {React.createElement(component)}
-  </Provider>
