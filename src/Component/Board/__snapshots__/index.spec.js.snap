@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component :: Board :: index checks the initial state and verify if the board is empty 1`] = `
+<main
+  className="myBoard"
+>
+  <button
+    className="board add-card"
+    onClick={[Function]}
+  >
+    Add another card
+  </button>
+</main>
+`;
+
+exports[`Component :: Board :: index displays the cards and add "add another card button" when it is not creating any card 1`] = `
+<main
+  className="myBoard"
+>
+  <div
+    className="card"
+  >
+    <h3
+      className="card-title"
+    >
+      My test card
+    </h3>
+  </div>
+  <button
+    className="board add-card"
+    onClick={[Function]}
+  >
+    Add another card
+  </button>
+</main>
+`;
+
+exports[`Component :: Board :: index loads when a card is creating 1`] = `
+<main
+  className="myBoard"
+>
+  <div
+    className="board loader"
+  >
+    We are adding a new card...
+  </div>
+</main>
+`;
