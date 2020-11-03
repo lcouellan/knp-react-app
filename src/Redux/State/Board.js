@@ -7,10 +7,7 @@ export const INITIAL_STATE = {
   isLoading: false
 }
 
-// ADD_CARD :: String
 export const ADD_CARD = '@knp/Board/AddCard'
-
-// RECEIVE_CARD:: String
 export const RECEIVE_CARD = '@knp/Board/ReceiveCard'
 
 // addCard :: () -> Action ADD_CARD
@@ -24,7 +21,7 @@ export const receiveCard = card => ({
 
 // Board :: (State, Action *) -> State
 export default createReducer(INITIAL_STATE, {
-  [ADD_CARD]: (state) => ({
+  [ADD_CARD]: state => ({
     ...state,
     isLoading: true
   }),

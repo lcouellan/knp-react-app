@@ -13,8 +13,8 @@ export default ({
       </div>
     )}
 
-    {isLoading ?
-      <div className="board loader">We are adding a new card...</div>
+    {isLoading
+      ? <div className="board loader">We are adding a new card...</div>
       : <button className="board add-card" onClick={addCard}>Add another card</button>
     }
   </main>

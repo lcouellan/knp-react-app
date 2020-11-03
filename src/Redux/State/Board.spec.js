@@ -14,7 +14,9 @@ describe('Redux :: Module :: Board', () => {
 
     expect(s2).not.toEqual(s1)
 
-    expect(s2.isLoading).toBe(true)
+    const expectedState = { isLoading: true, cards: [] }
+
+    expect(s2).toEqual(expectedState)
   })
 
   it('reduces receive card action', () => {
@@ -26,8 +28,8 @@ describe('Redux :: Module :: Board', () => {
 
     expect(s3).not.toEqual(s2)
 
-    expect(s3.isLoading).toBe(false)
+    const expectedState = { isLoading: false, cards: [{ title: 'My title' }] }
 
-    expect(s3.cards).toEqual([{ title: 'My title' }])
+    expect(s3).toEqual(expectedState)
   })
 })

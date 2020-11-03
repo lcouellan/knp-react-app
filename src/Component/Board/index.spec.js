@@ -6,20 +6,31 @@ import State from '../../Redux/State'
 import TestRenderer from 'react-test-renderer'
 
 describe('Component :: Board :: index', () => {
-  let store
-
-  beforeEach(() => {
-    store = createStore(State, State(), undefined)
-  })
 
   it('checks the initial state and verify if the board is empty', () => {
+    const store = createStore(State, State(), undefined)
     const inspector = TestRenderer.create(createElement(store, Board))
 
-    expect(store.getState().Board.isLoading).toBe(false)
-
-    expect(store.getState().Board.cards.length).toEqual(0)
-
     inspector.root.findByProps({ className: 'myBoard' })
+  })
+
+  it('loads when a card is creating', () => {
+    const store = createStore(State, State({ Board: { isLoading: true, cards: [] } }), undefined)
+    const inspector = TestRenderer.create(createElement(store, Board))
+
+    inspector.root.findByProps({ className: 'board loader' })
+  })
+
+  it('displays the cards and add "add another card button" when it is not creating any card', () => {
+    const store = createStore(
+      State,
+      State({ Board: { isLoading: false, cards: [{ title: 'My title' }] } }),
+      undefined
+    )
+    const inspector = TestRenderer.create(createElement(store, Board))
+
+    inspector.root.findByProps({ className: 'board add-card' })
+    inspector.root.findByProps({ className: 'card-title' })
   })
 })
 

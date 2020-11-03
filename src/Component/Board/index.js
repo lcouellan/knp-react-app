@@ -5,7 +5,8 @@ import Board from './Board'
 
 // mapStateToProps :: State -> Props
 const mapStateToProps = state => ({
-  ...state.Board
+  cards: state.Board.cards,
+  isLoading: state.Board.isLoading
 })
 
 // mapDispatchToProps :: (Action * -> State) -> Props
@@ -13,8 +14,5 @@ const mapDispatchToProps = dispatch => ({
   addCard: compose(dispatch, addCard)
 })
 
-// container :: ReactComponent -> ReactComponent
-const container = connect(mapStateToProps, mapDispatchToProps)
-
 // Board :: ReactComponent
-export default container(Board)
+export default connect(mapStateToProps, mapDispatchToProps)(Board)
