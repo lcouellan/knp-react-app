@@ -14,5 +14,4 @@ const mapDispatchToProps = dispatch => ({
   addCard: compose(dispatch, addCard)
 })
 
-// Board :: ReactComponent
 export default connect(mapStateToProps, mapDispatchToProps)(Board)
