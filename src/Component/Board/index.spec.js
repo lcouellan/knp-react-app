@@ -1,7 +1,7 @@
 import React from 'react'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import TestRenderer, { act } from 'react-test-renderer'
+import { act } from 'react-test-renderer'
 import Board from './index'
 import State from '../../Redux/State'
 import { addCard, receiveCard } from '../../Redux/State/Board'
@@ -11,22 +11,19 @@ describe('Component :: Board :: index', () => {
 
   it('checks the initial state and verify if the board is empty', () => {
     const store = createStore(State, State(), undefined)
-    let inspector = TestRenderer.create(createElement(store, Board))
-
-    inspector.root.findByProps({ className: 'myBoard' })
+    let inspector
 
     act(() => {
       inspector = createContainer(<Board />, store)
     })
 
+    inspector.root.findByProps({ className: 'myBoard' })
     expect(inspector).toMatchSnapshot()
   })
 
   it('loads when a card is creating', () => {
-    const store = createStore(State, State({ Board: { isLoading: true, cards: [] } }), undefined)
-    let inspector = TestRenderer.create(createElement(store, Board))
-
-    inspector.root.findByProps({ className: 'board loader' })
+    const store = createStore(State, State(), undefined)
+    let inspector
 
     act(() => {
       inspector = createContainer(<Board />, store)
@@ -36,19 +33,17 @@ describe('Component :: Board :: index', () => {
       store.dispatch(addCard())
     })
 
+    inspector.root.findByProps({ className: 'board loader' })
     expect(inspector).toMatchSnapshot()
   })
 
   it('displays the cards and add "add another card button" when it is not creating any card', () => {
     const store = createStore(
       State,
-      State({ Board: { isLoading: false, cards: [{ title: 'My title' }] } }),
+      State(),
       undefined
     )
-    let inspector = TestRenderer.create(createElement(store, Board))
-
-    inspector.root.findByProps({ className: 'board add-card' })
-    inspector.root.findByProps({ className: 'card-title' })
+    let inspector
 
     act(() => {
       inspector = createContainer(<Board />, store)
@@ -57,6 +52,9 @@ describe('Component :: Board :: index', () => {
     act(() => {
       store.dispatch(receiveCard({ title: 'My test card' }))
     })
+
+    inspector.root.findByProps({ className: 'board add-card' })
+    inspector.root.findByProps({ className: 'card-title' })
 
     expect(inspector).toMatchSnapshot()
   })

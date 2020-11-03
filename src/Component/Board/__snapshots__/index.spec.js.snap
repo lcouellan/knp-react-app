@@ -23,15 +23,6 @@ exports[`Component :: Board :: index displays the cards and add "add another car
     <h3
       className="card-title"
     >
-      My title
-    </h3>
-  </div>
-  <div
-    className="card"
-  >
-    <h3
-      className="card-title"
-    >
       My test card
     </h3>
   </div>
