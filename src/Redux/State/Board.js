@@ -10,7 +10,7 @@ export const INITIAL_STATE = {
 
 export const SAVE_CARD = '@knp/Board/SaveCard'
 export const SET_BLANK_CARD_TITLE = '@knp/Board/SetBlankCardTitle'
-export const TOGGLE_BLANK_CARD = '@knp/Board/ToggleBlankCard'
+export const SHOW_BLANK_CARD = '@knp/Board/ShowBlankCard'
 export const REMOVE_BLANK_CARD = '@knp/Board/RemoveBlankCard'
 
 
@@ -23,8 +23,8 @@ export const setBlankCardTitle = cardTitle => ({
   cardTitle
 })
 
-// toggleBlankCard :: () -> Action TOGGLE_BLANK_CARD
-export const toggleBlankCard = always({ type: TOGGLE_BLANK_CARD })
+// showBlankCard :: () -> Action SHOW_BLANK_CARD
+export const showBlankCard = always({ type: SHOW_BLANK_CARD })
 
 // removeBlankCard :: () -> Action REMOVE_BLANK_CARD
 export const removeBlankCard = always({ type: REMOVE_BLANK_CARD })
@@ -46,7 +46,7 @@ export default createReducer(INITIAL_STATE, {
     ...state,
     blankCardTitle: cardTitle
   }),
-  [TOGGLE_BLANK_CARD]: state => ({
+  [SHOW_BLANK_CARD]: state => ({
     ...state,
     isBlankCardVisible: true
   }),

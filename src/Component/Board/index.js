@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { toggleBlankCard, saveCard, setBlankCardTitle } from '../../Redux/State/Board'
+import { showBlankCard, saveCard, setBlankCardTitle } from '../../Redux/State/Board'
 import { compose } from 'ramda'
 import Board from './Board'
 
@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 
 // mapDispatchToProps :: (Action * -> State) -> Props
 const mapDispatchToProps = dispatch => ({
-  addCard: compose(dispatch, toggleBlankCard),
+  addCard: compose(dispatch, showBlankCard),
   saveCard: compose(dispatch, saveCard),
   setBlankCardTitle: compose(dispatch, setBlankCardTitle)
 })

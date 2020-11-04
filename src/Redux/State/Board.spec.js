@@ -2,7 +2,7 @@ import {
   setBlankCardTitle,
   INITIAL_STATE,
   default as reducer,
-  toggleBlankCard,
+  showBlankCard,
   saveCard,
   removeBlankCard
 } from './Board'
@@ -21,9 +21,9 @@ describe('Redux :: Module :: Board', () => {
     })
   })
 
-  it('reduces toggle blank card action', () => {
+  it('reduces show blank card action', () => {
     expect(
-      reducer(INITIAL_STATE, toggleBlankCard()),
+      reducer(INITIAL_STATE, showBlankCard()),
     ).toEqual({
       ...INITIAL_STATE,
       isBlankCardVisible: true
@@ -53,12 +53,11 @@ describe('Redux :: Module :: Board', () => {
   })
 
   it('reduces remove blank card action', () => {
+    const s1 = reducer(INITIAL_STATE, showBlankCard())
+    const s2 = reducer(s1, setBlankCardTitle('do not save this title title'))
+
     expect(
-      reducer(INITIAL_STATE, removeBlankCard()),
-    ).toEqual({
-      ...INITIAL_STATE,
-      isBlankCardVisible: false,
-      blankCardTitle: ''
-    })
+      reducer(s2, removeBlankCard()),
+    ).toEqual(INITIAL_STATE)
   })
 })

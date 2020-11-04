@@ -10,7 +10,6 @@ export default ({
   setBlankCardTitle,
 }) =>
   <main className="my-board">
-
     <input
       className={isBlankCardVisible ? "new-card" : "new-card hidden"}
       placeholder="What needs to be done?"

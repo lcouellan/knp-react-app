@@ -3,7 +3,7 @@ import { createStore } from 'redux'
 import { act } from 'react-test-renderer'
 import Board from './index'
 import State from '../../Redux/State'
-import { setBlankCardTitle, saveCard, toggleBlankCard, removeBlankCard } from '../../Redux/State/Board'
+import { setBlankCardTitle, saveCard, showBlankCard, removeBlankCard } from '../../Redux/State/Board'
 import { createContainer } from '../../utils-test'
 
 describe('Component :: Board :: index', () => {
@@ -32,7 +32,7 @@ describe('Component :: Board :: index', () => {
     })
 
     act(() => {
-      store.dispatch(toggleBlankCard())
+      store.dispatch(showBlankCard())
     })
 
     expect(inspector).toMatchSnapshot()
@@ -77,6 +77,4 @@ describe('Component :: Board :: index', () => {
 
     expect(inspector).toMatchSnapshot()
   })
-
-
 })
