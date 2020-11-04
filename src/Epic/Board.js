@@ -1,16 +1,15 @@
-import { combineEpics, ofType } from 'redux-observable'
+import { isEscKey } from '../utils'
 import * as Board from '../Redux/State/Board'
-import { map } from 'rxjs/operators'
+import { combineEpics } from 'redux-observable'
+import { fromEvent } from 'rxjs'
+import { filter, map } from 'rxjs/operators'
 
-// addCardEpic :: Epic -> Observable Action Board.RECEIVE_CARD
-export const addCardEpic = (action$) => action$.pipe(
-  ofType(Board.ADD_CARD),
-  map(() => ({
-    title: 'My title'
-  })),
-  map(Board.receiveCard)
+// removeBlankCardOnEscEpic :: Epic -> Observable Action *
+const removeBlankCardOnEscEpic = () => fromEvent(document, 'keyup').pipe(
+  filter(isEscKey),
+  map(Board.removeBlankCard)
 )
 
 export default combineEpics(
-  addCardEpic
+  removeBlankCardOnEscEpic
 )

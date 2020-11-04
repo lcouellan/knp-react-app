@@ -12,6 +12,12 @@ main {
     margin: auto;
   }
 
+  .new-card {
+    padding: 2px 5px;
+    display: block;
+    margin: 10px auto;
+  }
+
   .card {
     width: 200px;
     min-height: 100px;
@@ -23,6 +29,10 @@ main {
     h3 {
       font-size: 22px;
     }
+  }
+
+  .hidden {
+    opacity: 0;
   }
 
   button {

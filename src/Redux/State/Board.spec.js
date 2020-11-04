@@ -1,8 +1,10 @@
 import {
-  addCard,
-  receiveCard,
+  setBlankCardTitle,
   INITIAL_STATE,
-  default as reducer
+  default as reducer,
+  toggleBlankCard,
+  saveCard,
+  removeBlankCard
 } from './Board'
 
 describe('Redux :: Module :: Board', () => {
@@ -10,25 +12,53 @@ describe('Redux :: Module :: Board', () => {
     expect(reducer()).toEqual(INITIAL_STATE)
   })
 
-  it('reduces the add card action', () => {
+  it('reduces set blank card title action', () => {
     expect(
-      reducer(INITIAL_STATE, addCard()),
+      reducer(INITIAL_STATE, setBlankCardTitle('test blank card title')),
     ).toEqual({
       ...INITIAL_STATE,
-      isLoading: true
+      blankCardTitle: 'test blank card title'
     })
   })
 
-  it('reduces receive card action', () => {
-    const s1 = reducer(INITIAL_STATE, addCard())
-    const s2 = reducer(s1, receiveCard({ title: 'My title' }))
+  it('reduces toggle blank card action', () => {
+    expect(
+      reducer(INITIAL_STATE, toggleBlankCard()),
+    ).toEqual({
+      ...INITIAL_STATE,
+      isBlankCardVisible: true
+    })
+  })
 
-    expect(s2).toEqual({
+  it('reduces save card action', () => {
+    const s1 = reducer(INITIAL_STATE, setBlankCardTitle('test other title'))
+
+    expect(s1).toEqual({
+      ...INITIAL_STATE,
+      blankCardTitle: 'test other title'
+    })
+
+    expect(
+      reducer(s1, saveCard()),
+    ).toEqual({
       ...s1,
-      cards: [{
-        title: 'My title'
-      }],
-      isLoading: false
+      blankCardTitle: '',
+      isBlankCardVisible: false,
+      cards: [
+        {
+          title: 'test other title'
+        }
+      ]
+    })
+  })
+
+  it('reduces remove blank card action', () => {
+    expect(
+      reducer(INITIAL_STATE, removeBlankCard()),
+    ).toEqual({
+      ...INITIAL_STATE,
+      isBlankCardVisible: false,
+      blankCardTitle: ''
     })
   })
 })

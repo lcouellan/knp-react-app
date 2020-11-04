@@ -2,8 +2,15 @@
 
 exports[`Component :: Board :: index checks the initial state and verify if the board is empty 1`] = `
 <main
-  className="myBoard"
+  className="my-board"
 >
+  <input
+    className="new-card hidden"
+    onChange={[Function]}
+    onKeyUp={[Function]}
+    placeholder="What needs to be done?"
+    value=""
+  />
   <button
     className="board add-card"
     onClick={[Function]}
@@ -13,17 +20,24 @@ exports[`Component :: Board :: index checks the initial state and verify if the 
 </main>
 `;
 
-exports[`Component :: Board :: index displays the cards and add "add another card button" when it is not creating any card 1`] = `
+exports[`Component :: Board :: index displays the cards when a card is added 1`] = `
 <main
-  className="myBoard"
+  className="my-board"
 >
+  <input
+    className="new-card hidden"
+    onChange={[Function]}
+    onKeyUp={[Function]}
+    placeholder="What needs to be done?"
+    value=""
+  />
   <div
     className="card"
   >
     <h3
       className="card-title"
     >
-      My test card
+      My card
     </h3>
   </div>
   <button
@@ -35,14 +49,42 @@ exports[`Component :: Board :: index displays the cards and add "add another car
 </main>
 `;
 
-exports[`Component :: Board :: index loads when a card is creating 1`] = `
+exports[`Component :: Board :: index remove the blank card and empty it when you press the escape button 1`] = `
 <main
-  className="myBoard"
+  className="my-board"
 >
-  <div
-    className="board loader"
+  <input
+    className="new-card hidden"
+    onChange={[Function]}
+    onKeyUp={[Function]}
+    placeholder="What needs to be done?"
+    value=""
+  />
+  <button
+    className="board add-card"
+    onClick={[Function]}
   >
-    We are adding a new card...
-  </div>
+    Add another card
+  </button>
+</main>
+`;
+
+exports[`Component :: Board :: index shows the blank card when you click on "Add an other card" button 1`] = `
+<main
+  className="my-board"
+>
+  <input
+    className="new-card"
+    onChange={[Function]}
+    onKeyUp={[Function]}
+    placeholder="What needs to be done?"
+    value=""
+  />
+  <button
+    className="board add-card"
+    onClick={[Function]}
+  >
+    Add another card
+  </button>
 </main>
 `;
