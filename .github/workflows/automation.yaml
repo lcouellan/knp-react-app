@@ -4,14 +4,7 @@
   'on':
     pull_request:
       types:
-        - edited
-        - labeled
-        - opened
         - ready_to_merge
-        - reopened
-        - synchronize
-        - unlabeled
-        - unlocked
     check_suite:
       types:
         - completed
