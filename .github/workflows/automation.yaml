@@ -1,0 +1,45 @@
+---
+  name: automation
+
+  'on':
+    pull_request:
+      types:
+        - edited
+        - labeled
+        - opened
+        - ready_to_merge
+        - reopened
+        - synchronize
+        - unlabeled
+        - unlocked
+    check_suite:
+      types:
+        - completed
+    status: {}
+  jobs:
+    merge:
+      runs-on: self-hosted
+      steps:
+        - uses: actions/github-script@v2
+          with:
+            github-token: ${{secrets.TOKEN}}
+            script: |
+              if (!context.payload.pull_request) {
+                console.log('Not in a pull request. Skipped.');
+                return;
+              }
+              if (0 == context.payload.pull_request.labels.filter(label => label.name.toLowerCase() == 'ready to merge').length) {
+                console.log('Pull request is not ready to merge. Skipped.');
+                return;
+              }
+              try {
+                await github.pulls.merge({
+                  owner: context.payload.repository.owner.login,
+                  repo: context.payload.repository.name,
+                  pull_number: context.payload.pull_request.number,
+                  commit_title: context.payload.pull_request.title,
+                  merge_method: 'squash'
+                });
+              } catch (error) {
+                console.log(error.message)
+              }
