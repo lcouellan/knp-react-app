@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: .
+    labels:
+      - Dependencies
+      - Javascript
+      - 'Ready to review'
+    schedule:
+      interval: daily
+      time: '00:00'
+    open-pull-requests-limit: 99
+  - package-ecosystem: docker
+    directory: .
+    labels:
+      - Dependencies
+      - Docker
+      - 'Ready to review'
+    schedule:
+      interval: daily
+      time: '00:00'
+    ignore:
+      - dependency-name: "node"
+        versions: ["13.x", "14.x"]
+      - dependency-name: "node"
+        versions: ["1.19.x"]
