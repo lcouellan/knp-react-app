@@ -5,7 +5,7 @@ updates:
     labels:
       - Dependencies
       - Javascript
-      - 'Ready to review'
+      - 'ready to merge'
     schedule:
       interval: daily
       time: '00:00'
@@ -15,7 +15,7 @@ updates:
     labels:
       - Dependencies
       - Docker
-      - 'Ready to review'
+      - 'ready to merge'
     schedule:
       interval: daily
       time: '00:00'
