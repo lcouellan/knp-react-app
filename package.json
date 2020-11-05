@@ -2,7 +2,7 @@
   "name": "knp-react-app",
   "version": "0.1.0",
   "dependencies": {
-    "ramda": "^0.26.1",
+    "ramda": "^0.27.1",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-functional-lifecycle": "^3.0.0",
