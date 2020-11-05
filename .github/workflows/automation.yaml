@@ -1,21 +1,20 @@
 ---
   name: automation
 
-  'on':
+  on:
     pull_request:
-      types:
-        - opened
+      branches: [ master ]
     check_suite:
       types:
         - completed
     status: {}
   jobs:
     merge:
-      runs-on: self-hosted
+      runs-on: ubuntu-latest
       steps:
         - uses: actions/github-script@v2
           with:
-            github-token: ${{secrets.TOKEN}}
+            github-token: ${{ secrets.GITHUB_TOKEN }}
             script: |
               if (!context.payload.pull_request) {
                 console.log('Not in a pull request. Skipped.');
