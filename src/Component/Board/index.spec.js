@@ -3,7 +3,7 @@ import { createStore } from 'redux'
 import { act } from 'react-test-renderer'
 import Board from './index'
 import State from '../../Redux/State'
-import { addCard, receiveCard } from '../../Redux/State/Board'
+import { setBlankCardTitle, saveCard, showBlankCard, removeBlankCard } from '../../Redux/State/Board'
 import { createContainer } from '../../utils-test'
 
 describe('Component :: Board :: index', () => {
@@ -19,22 +19,7 @@ describe('Component :: Board :: index', () => {
     expect(inspector).toMatchSnapshot()
   })
 
-  it('loads when a card is creating', () => {
-    const store = createStore(State, State(), undefined)
-    let inspector
-
-    act(() => {
-      inspector = createContainer(<Board />, store)
-    })
-
-    act(() => {
-      store.dispatch(addCard())
-    })
-
-    expect(inspector).toMatchSnapshot()
-  })
-
-  it('displays the cards and add "add another card button" when it is not creating any card', () => {
+  it('shows the blank card when you click on "Add an other card" button', () => {
     const store = createStore(
       State,
       State(),
@@ -47,7 +32,47 @@ describe('Component :: Board :: index', () => {
     })
 
     act(() => {
-      store.dispatch(receiveCard({ title: 'My test card' }))
+      store.dispatch(showBlankCard())
+    })
+
+    expect(inspector).toMatchSnapshot()
+  })
+
+  it('displays the cards when a card is added', () => {
+    const store = createStore(
+      State,
+      State(),
+      undefined
+    )
+    let inspector
+
+    act(() => {
+      inspector = createContainer(<Board />, store)
+    })
+
+    act(() => {
+      store.dispatch(setBlankCardTitle('My card'))
+      store.dispatch(saveCard())
+    })
+
+    expect(inspector).toMatchSnapshot()
+  })
+
+  it('remove the blank card and empty it when you press the escape button', () => {
+    const store = createStore(
+      State,
+      State(),
+      undefined
+    )
+    let inspector
+
+    act(() => {
+      inspector = createContainer(<Board />, store)
+    })
+
+    act(() => {
+      store.dispatch(setBlankCardTitle('Do not save this title'))
+      store.dispatch(removeBlankCard())
     })
 
     expect(inspector).toMatchSnapshot()
