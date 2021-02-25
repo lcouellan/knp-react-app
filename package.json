@@ -9,7 +9,7 @@
     "react-redux": "^7.2.2",
     "redux": "^4.0.1",
     "redux-observable": "^1.0.0",
-    "rxjs": "^6.4.0"
+    "rxjs": "^6.6.6"
   },
   "scripts": {
     "start": "npm-run-all -p watch-css start-js",
