@@ -7,7 +7,7 @@
     "react-dom": "^16.8.2",
     "react-functional-lifecycle": "^3.0.0",
     "react-redux": "^7.2.2",
-    "redux": "^4.0.1",
+    "redux": "^4.1.0",
     "redux-observable": "^1.0.0",
     "rxjs": "^6.4.0"
   },
